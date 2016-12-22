@@ -18,5 +18,9 @@ def print_matrix(matrix):
             print str(y) + '\t',
         print
 
+def inp_array():
+    return map(int, raw_input().split())
+
 if __name__ == '__main__':
-    print generate_matrix([1, 2, 3], [1, 2, 3])
+    lis = inp_array()
+    print lis

@@ -1,5 +1,9 @@
 def read_int():
-    return int(raw_input())
+    try:
+        return int(input())
+    except EOFError:
+        exit(0)
+
 
 def solve():
     size = read_int()
@@ -8,35 +12,40 @@ def solve():
         lis = []
         for x in range(lis_size - 1):
             lis.insert(x, read_int())
-        frm,to = kadane(lis)
+        frm, to = kadane(lis)
         if frm == -1:
-            print "Route %d has no nice parts" % (i)
+            print("Route {0} has no nice parts".format(i + 1))
         else:
-            print "The nicest part of route %d is between stops %d and %d" % ((i + 1), frm, to)
+            print("The nicest part of route {0} is between stops {1} and {2}".format((i + 1), (frm + 1), (to + 2)))
+
 
 def kadane(lis):
-    print "list : "
-    print lis
     max_ = 0
     sum_till_now = 0
-    frm, to = 0, 0
-    max_frm, max_to  = -1, -1
+    frm, to = -1, -1
+    max_frm, max_to = -1, -1
     first_time = True
     for i in range(len(lis)):
-        if lis[i] + sum_till_now > 0:
+        zz = lis[i] + sum_till_now
+        if zz > 0:
             if first_time:
                 frm = i
-            else:
+                first_time = False
+
+            if zz >= max_:
                 to = i
-            sum_till_now += lis[i]
-        else:
-            if sum_till_now > max_:
-                max_ = sum_till_now
-                max_frm = frm
-                max_to = to_
+                if (max_frm == -1 and max_to == -1) or (to - frm > max_to - max_frm) or (zz > max_):
+                    max_frm = frm
+                    max_to = to
+                max_ = zz
+        sum_till_now += lis[i]
+
+        if sum_till_now < 0:
             sum_till_now = 0
+            first_time = True
+
     return max_frm, max_to
 
+
 if __name__ == '__main__':
-    print 'coming'
     solve()
