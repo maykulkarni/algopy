@@ -1,8 +1,4 @@
-def read_int():
-    try:
-        return int(input())
-    except EOFError:
-        exit(0)
+from dp.utils import *
 
 
 def solve():
