@@ -1,3 +1,6 @@
+INF = 99999
+
+
 def generate_matrix(row, col, val=0):
     if type(row) is list:
         row = len(row)
@@ -28,6 +31,19 @@ def print_matrix(matrix):
 
 def inp_array():
     return map(int, raw_input().split())
+
+
+def read_int_array():
+    return [int(x) for x in raw_input().split()]
+
+
+def read_matrix():
+    row, col = [int(x) for x in raw_input().split()]
+    matrix = generate_matrix(row, col, 0)
+    for i in range(row):
+        matrix[i] = [int(x) for x in raw_input().split()]
+    return matrix
+
 
 if __name__ == '__main__':
     lis = inp_array()
