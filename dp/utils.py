@@ -29,12 +29,8 @@ def print_matrix(matrix):
         print
 
 
-def inp_array():
-    return map(int, raw_input().split())
-
-
 def read_int_array():
-    return [int(x) for x in raw_input().split()]
+    return map(int, raw_input().split())
 
 
 def read_matrix():
@@ -46,5 +42,4 @@ def read_matrix():
 
 
 if __name__ == '__main__':
-    lis = inp_array()
     print lis
