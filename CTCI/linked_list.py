@@ -26,6 +26,7 @@ class Node:
 class LinkedList:
 	_head = None
 	_tail = None
+	_length = 0
 
 	def __str__(self):
 		temp = self._head
@@ -41,17 +42,63 @@ class LinkedList:
 			self._head = new_node
 			self._tail = new_node
 		else:
-			self._tail.set_next(new_node)
-			self._tail = self._tail.get_next()
+			self._tail.next = new_node
+			self._tail = self._tail.next
+		self._length += 1
 
 	def remove(self, to_remove):
-		temp = self._head
-		found = False
-		while temp.next is not None:
-			if temp.next == to_remove:
-				print("Removing: {}".format(temp.next))
-		
+		if self._length == 0:
+			raise ValueError("Empty List")
+		elif self._length == 1:
+			self._head = None
+		elif self._length == 2:
+			self._head.next = None
+		elif self._head == to_remove:
+			self._head = self._head.next
+		else:
+			temp = self._head
+			temp_next = temp.next
+			found = False
+			while temp_next.next is not None:
+				if temp_next == to_remove:
+					print("Removing: {}".format(temp.next))
+					temp.next = temp_next.next
+					temp_next = None
+					found = True
+					break
+				else:
+					temp_next = temp_next.next
+					temp = temp.next
+			if not found:
+				if temp_next == to_remove:
+					temp.next = None
+					found = True
+				else:
+					print("{} not found in linked list".format(to_remove))
+					return
+		self._length -= 1
+
+	@property
+	def head(self):
+		return self._heads
+
+	def __len__(self):
+		return self._length
+
+	@staticmethod
+	def from_array(arr):
+		ll = LinkedList()
+		for x in arr:
+			ll.add(x)
+		return ll
+
+	@staticmethod
+	def reverse(llist):
+		pass
+
 
 if __name__ == '__main__':
-	a = LinkedList()
-	a.add(4)
+	a = LinkedList.from_array([1, 2, 3])
+	a.remove(Node(1))
+	print(a)
+	print(len(a))
