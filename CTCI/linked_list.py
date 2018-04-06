@@ -33,7 +33,7 @@ class LinkedList:
 		while temp.get_next() is not None:
 			print("{}->".format(temp), end="")
 			temp = temp.get_next()
-		print(temp)
+		print(temp, end="")
 		return ""
 
 	def add(self, new_data):
