@@ -29,6 +29,9 @@ class LinkedList:
 	_length = 0
 
 	def __str__(self):
+		if self._length == 0:
+			print("List Empty!", end="")
+			return ""
 		temp = self._head
 		while temp.get_next() is not None:
 			print("{}->".format(temp), end="")
@@ -80,7 +83,7 @@ class LinkedList:
 
 	@property
 	def head(self):
-		return self._heads
+		return self._head
 
 	def __len__(self):
 		return self._length
@@ -101,4 +104,7 @@ if __name__ == '__main__':
 	a = LinkedList.from_array([1, 2, 3])
 	a.remove(Node(1))
 	print(a)
-	print(len(a))
+	a.remove(Node(3))
+	print(a)
+	a.remove(Node(2))
+	print(a)
