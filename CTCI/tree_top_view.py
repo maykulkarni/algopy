@@ -15,7 +15,6 @@ def traverse_tree(node, horizontal_distance, depth_current):
         traverse_tree(node.right, horizontal_distance + 1, depth_current + 1)
 
 
-
 if __name__ == '__main__':
     tree_one = BinaryTree()
     tree_one._root = Node(1)
